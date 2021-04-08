@@ -9,9 +9,9 @@ from PIL import Image
 
 
 recognizer_mtcnn = cv2.face_LBPHFaceRecognizer.create()
-recognizer_mtcnn.read("C:\\Users\\stav\\PycharmProjects\\finalProject\\venv\\src\\mtcnn_train.yml")
+recognizer_mtcnn.read("C:\\Users\\stav\\final\\venv\\src\\mtcnn_train.yml")
 
-with open("C:\\Users\\stav\\PycharmProjects\\finalProject\\venv\\src\\label_mtcnn.pickle", 'rb') as f:
+with open("C:\\Users\\stav\\final\\venv\\src\\label_mtcnn.pickle", 'rb') as f:
     labels = pickle.load(f)  # load the labels dictionary
     labels = {v: k for k, v in
               labels.items()}  # invert the labels dictionary to be id:name pairs instead of name:id pairs

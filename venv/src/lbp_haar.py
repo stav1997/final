@@ -9,14 +9,14 @@ import pickle
 from PIL import Image
 
 face_cascade = cv2.CascadeClassifier(
-        "C:\\Users\\stav\\PycharmProjects\\finalProject\\venv\\src\\cascades\\haarcascades\\haarcascade_frontalface_alt2.xml")
+        "C:\\Users\\stav\\final\\venv\\src\\cascades\\haarcascades\\haarcascade_frontalface_alt2.xml")
 # recognizer = cv2.face_LBPHFaceRecognizer.create()
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-recognizer.read("C:\\Users\\stav\\PycharmProjects\\finalProject\\venv\\src\\haar_train.yml")
-lables = {}
+recognizer.read("C:\\Users\\stav\\final\\venv\\src\\haar_train.yml")
+labels = {}
 
-with open("C:\\Users\\stav\\PycharmProjects\\finalProject\\venv\\src\\label_haar.pickle", 'rb') as f:
+with open("C:\\Users\\stav\\final\\venv\\src\\label_haar.pickle", 'rb') as f:
     lables = pickle.load(f) #load the lables dictionary
     lables = {v:k for k, v in lables.items()} #invert the lables dictionary to be id:name pairs instead of name:id pairs
 
@@ -35,7 +35,7 @@ def lbpHaar(path_):
         img = cv2.rectangle(image_array, (x, y), (x + w, y + h), (0, 255, 0), 1)
         # roi_final = cv2.resize(roi, (200, 200))
 
-        id_, conf = recognizer.predict(roi) # higher value in the conf means it is less similar
+        id_, conf = recognizer.predict(roi)# higher value in the conf means it is less similar
         print(conf)
         if 30 <= conf <= 90:
             print(id_)

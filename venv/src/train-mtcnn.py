@@ -12,7 +12,7 @@ import time
 file_id = 0
 detector = MTCNN()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-image_dir = os.path.join(BASE_DIR,"samples\\train")
+image_dir = os.path.join(BASE_DIR, "samples\\train")
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 x_train = [] #numpy arrays of the pictures

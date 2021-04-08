@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 import time
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-image_dir = os.path.join(BASE_DIR,"samples\\train")
+image_dir = os.path.join(BASE_DIR, "samples\\train")
 face_cascade = cv2.CascadeClassifier(
-        "C:\\Users\\stav\\PycharmProjects\\finalProject\\venv\\src\\cascades\\haarcascades\\haarcascade_frontalface_alt2.xml")
+        "C:\\Users\\stav\\final\\venv\\src\\cascades\\haarcascades\\haarcascade_frontalface_alt2.xml")
 # recognizer = cv2.face_LBPHFaceRecognizer.create()
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
