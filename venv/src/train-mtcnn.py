@@ -6,7 +6,6 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-from matplotlib.patches import Rectangle
 import time
 
 file_id = 0

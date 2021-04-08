@@ -4,10 +4,6 @@ from PIL import Image
 import numpy as np
 import cv2 #opencv
 import pickle
-import matplotlib.pyplot as plt
-# from sklearn import svm
-# from sklearn import metrics
-# from sklearn import datasets
 import time
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

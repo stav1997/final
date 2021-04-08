@@ -1,10 +1,7 @@
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
-from scipy.linalg.matfuncs import eps
-from scipy.spatial import distance
 import pickle
 from PIL import Image
 
