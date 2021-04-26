@@ -13,7 +13,7 @@ with open("C:\\Users\\stav\\final\\venv\\src\\svm.pickle", 'rb') as f:
     labels = {v: k for k, v in
               labels.items()}  # invert the labels dictionary to be id:name pairs instead of name:id pairs
 
-with open("C:\\Users\\stav\\final\\venv\\src\\model.save", 'rb') as f:
+with open("C:\\Users\\stav\\final\\venv\\src\\model.sav", 'rb') as f:
     model = pickle.load(f)
 
 

@@ -5,7 +5,6 @@ import numpy as np
 import cv2 #opencv
 from PIL import Image
 from mtcnn.mtcnn import MTCNN
-from joblib import dump
 import pickle
 import time
 import random
@@ -76,6 +75,6 @@ plt.show()
 with open("svm.pickle", 'wb') as f:
     pickle.dump(label_id, f)
 
-with open("model.joblib", 'wb') as f:
+with open("model.sav", 'wb') as f:
     pickle.dump(model, f)
 stop = time.time()
