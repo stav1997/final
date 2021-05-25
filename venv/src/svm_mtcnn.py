@@ -19,6 +19,7 @@ with open("C:\\Users\\stav\\final\\venv\\src\\model.sav", 'rb') as f:
 
 def svmMtcnn(path_):
     detector = MTCNN()
+    orb = cv2.ORB_create()
     temp = []
     pil_image = cv2.imread(path_)
     img = cv2.resize(pil_image, (480, 480), Image.ANTIALIAS)
@@ -39,8 +40,23 @@ def svmMtcnn(path_):
                 roi = gray_image_array[y:y + height, x:x + width]
                 img = cv2.rectangle(image_array, (x, y), (x + width, y + height), (0, 255, 0), 1)
                 roi = cv2.resize(roi, (480, 480))
+                # kp = orb.detect(roi, None)
+                # kp, des = orb.compute(roi, kp)
+                # roi1 = cv2.drawKeypoints(roi, kp, None, color=(0, 255, 0), flags=0)
+
+                # plt.imshow(hog_image)
+                # ax = plt.gca()
+                # for key, value in faces[0]['keypoints'].items():
+                #     print(faces[0]['keypoints'].items())
+                # # create and draw dot
+                #     dot = plt.Circle(value, radius=20, color='orange')
+                #     ax.add_patch(dot)
+
+                # plt.show()
                 roi = roi.flatten()
                 roi = roi.reshape(1, -1)
+
+                # image_array = cv2.drawKeypoints(image_array, kp, None, color=(0, 255, 0), flags=0)
                 pred = model.predict(roi)
                 print(pred[0])
                 # if 30 <= conf <= 90:

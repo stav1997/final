@@ -18,42 +18,42 @@ image_dir = os.path.join(BASE_DIR, "samples\\train")
 face_cascade = cv2.CascadeClassifier(
         "C:\\Users\\stav\\final\\venv\\src\\cascades\\lbpcascades\\lbpcascade_frontalface.xml")
 
-# data = []
+data = []
 features = []
 labels = []
-# current_id = 0
-# label_id = {}
-# categories = []
-# start = time.time()
-# for root, dirs, files in os.walk(image_dir):
-#     for filename in files:
-#         if filename.endswith("png") or filename.endswith("jpg"):
-#             path = os.path.join(root, filename)
-#             label = os.path.basename(os.path.dirname(path)).replace(" ", "-").lower()
-#             if not label in label_id:
-#                 categories.append(label)
-#                 label_id[label] = current_id
-#                 current_id += 1
-#
-#             id_ = label_id[label]
-#             pil_image = Image.open(path).convert("L")  # L stands for gray scale image
-#             try:
-#                 img = pil_image.resize((480, 480), Image.ANTIALIAS)
-#                 image_array = np.array(img, "uint8")
-#                 faces = face_cascade.detectMultiScale(image_array, 1.15, 6, minSize=(60, 60))
-#
-#                 for (x, y, w, h) in faces:
-#                     roi = image_array[y:y + h, x:x + w]
-#                     roi = cv2.resize(roi, (480, 480))
-#                     roi = roi.flatten()
-#                     data.append([roi, label])
-#
-#             except Exception as e:
-#                 pass
+current_id = 0
+label_id = {}
+categories = []
+start = time.time()
+for root, dirs, files in os.walk(image_dir):
+    for filename in files:
+        if filename.endswith("png") or filename.endswith("jpg"):
+            path = os.path.join(root, filename)
+            label = os.path.basename(os.path.dirname(path)).replace(" ", "-").lower()
+            if not label in label_id:
+                categories.append(label)
+                label_id[label] = current_id
+                current_id += 1
 
-pickle_in = open('data_svm_lbp.pickle', 'rb')
-data = pickle.load(pickle_in)
-pickle_in.close()
+            id_ = label_id[label]
+            pil_image = Image.open(path).convert("L")  # L stands for gray scale image
+            try:
+                img = pil_image.resize((480, 480), Image.ANTIALIAS)
+                image_array = np.array(img, "uint8")
+                faces = face_cascade.detectMultiScale(image_array, 1.15, 6, minSize=(60, 60))
+
+                for (x, y, w, h) in faces:
+                    roi = image_array[y:y + h, x:x + w]
+                    roi = cv2.resize(roi, (480, 480))
+                    roi = roi.flatten()
+                    data.append([roi, label])
+
+            except Exception as e:
+                pass
+
+# pickle_in = open('data_svm_lbp.pickle', 'rb')
+# data = pickle.load(pickle_in)
+# pickle_in.close()
 
 random.shuffle(data)
 for feature, label in data:
@@ -74,8 +74,8 @@ emo = test_x[0].reshape(480, 480)
 plt.imshow(emo, cmap='gray')
 plt.show()
 
-# with open("data_svm_lbp.pickle", 'wb') as f:
-#     pickle.dump(data, f)
+with open("data_svm_lbp.pickle", 'wb') as f:
+    pickle.dump(data, f)
 
 with open("svm_lbp.pickle", 'wb') as f:
     pickle.dump(labels, f)
@@ -83,4 +83,5 @@ with open("svm_lbp.pickle", 'wb') as f:
 with open("model_svm_lbp.sav", 'wb') as f:
     pickle.dump(model, f)
 stop = time.time()
+print(f"Training time: {stop - start}s")
 
